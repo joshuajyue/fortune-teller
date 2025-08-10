@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematical Proof: 50/50 Balance | Fortune Oracle</title>
+    <link rel="stylesheet" href="math-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">
+                <span class="chinese-char">数</span>
+                Mathematical Proof: 50/50 Balance
+                <span class="chinese-char">学</span>
+            </h1>
+            <p class="subtitle">Rigorous mathematical analysis proving each stochastic process has exactly 50% success probability</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Brownian Motion -->
+            <section class="math-section">
+                <h2 class="process-title">Brownian Motion (1D Random Walk)</h2>
+                <div class="math-content">
+                    <h3>Setup</h3>
+                    <p>Let $X_t$ be a symmetric random walk starting at $X_0 = 5$ with absorbing barriers at $0$ and $10$.</p>
+                    
+                    <h3>Mathematical Proof</h3>
+                    <p>For a symmetric random walk with equal step probabilities $p = q = 0.5$:</p>
+                    $$P(\text{reach 10 before 0}) = \frac{\text{starting position} - 0}{10 - 0} = \frac{5 - 0}{10 - 0} = \frac{5}{10} = 0.5$$
+                    
+                    <p>By symmetry:</p>
+                    $$P(\text{reach 0 before 10}) = 1 - P(\text{reach 10 before 0}) = 1 - 0.5 = 0.5$$
+                    
+                    <div class="conclusion">
+                        <strong>Result:</strong> Exactly 50% chance of success, 50% chance of failure ✓
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2D Random Walk -->
+            <section class="math-section">
+                <h2 class="process-title">2D Random Walk</h2>
+                <div class="math-content">
+                    <h3>Setup</h3>
+                    <p>Starting at $(5,5)$ in a $[0,10] \times [0,10]$ grid with:</p>
+                    <ul>
+                        <li><strong>Success:</strong> Reach right edge ($x \geq 10$) OR top edge ($y \geq 10$)</li>
+                        <li><strong>Failure:</strong> Reach left edge ($x \leq 0$) OR bottom edge ($y \leq 0$)</li>
+                    </ul>
+                    
+                    <h3>Mathematical Proof</h3>
+                    <p>Each step moves in one of 4 directions with equal probability $\frac{1}{4}$:</p>
+                    <ul>
+                        <li>Up: $(x, y+0.5)$ — moves toward success region</li>
+                        <li>Right: $(x+0.5, y)$ — moves toward success region</li>
+                        <li>Down: $(x, y-0.5)$ — moves toward failure region</li>
+                        <li>Left: $(x-0.5, y)$ — moves toward failure region</li>
+                    </ul>
+                    
+                    <p>By perfect symmetry of the setup:</p>
+                    $$P(\text{success}) = P(\text{failure}) = 0.5$$
+                    
+                    <div class="conclusion">
+                        <strong>Result:</strong> Exactly 50% chance of success, 50% chance of failure ✓
+                    </div>
+                </div>
+            </section>
+
+            <!-- Poisson Process -->
+            <section class="math-section">
+                <h2 class="process-title">Poisson Process</h2>
+                <div class="math-content">
+                    <h3>Setup</h3>
+                    <p>We want a Poisson process with rate $\lambda$ such that in $T = 10$ seconds:</p>
+                    $$P[N(10) \geq 10] = P[N(10) \leq 9] = 0.5$$
+                    
+                    <h3>Mathematical Derivation</h3>
+                    <p>Let $N(10) \sim \text{Poisson}(\mu)$ where $\mu = \lambda T = 10\lambda$.</p>
+                    
+                    <p>We solve:</p>
+                    $$F_{\text{Poisson}(\mu)}(9) = 0.5$$
+                    
+                    <p>Using the cumulative distribution function of Poisson distribution, this yields:</p>
+                    $$\mu \approx 9.6687146$$
+                    
+                    <p>Therefore:</p>
+                    $$\lambda = \frac{\mu}{T} \approx \frac{9.6687146}{10} \approx 0.96687146 \text{ s}^{-1}$$
+                    
+                    <h3>Verification</h3>
+                    <p>With $\mu \approx 9.6687$:</p>
+                    <ul>
+                        <li>$P[N(10) \leq 9] = F_{\text{Poisson}(9.6687)}(9) = 0.5$</li>
+                        <li>$P[N(10) \geq 10] = 1 - F_{\text{Poisson}(9.6687)}(9) = 0.5$</li>
+                    </ul>
+                    
+                    <div class="conclusion">
+                        <strong>Result:</strong> Exactly 50% chance of success, 50% chance of failure ✓
+                    </div>
+                </div>
+            </section>
+
+            <!-- Graph Walk -->
+            <section class="math-section">
+                <h2 class="process-title"><span class="icon graph-icon"></span> Graph Walk</h2>
+                <div class="math-content">
+                    <h3>Setup</h3>
+                    <p>Symmetric graph structure:</p>
+                    <p><strong>Red Terminal</strong> ↔ <strong>Left Cycle (20 nodes)</strong> ↔ <strong>Left Bridge</strong> ↔ <strong>Center</strong> ↔ <strong>Right Bridge</strong> ↔ <strong>Right Cycle (20 nodes)</strong> ↔ <strong>Green Terminal</strong></p>
+                    
+                    <h3>Mathematical Proof</h3>
+                    <p>By the symmetry principle for random walks on graphs:</p>
+                    <ol>
+                        <li><strong>Structural Symmetry:</strong> The graph is perfectly symmetric with respect to the center node</li>
+                        <li><strong>Path Length Equivalence:</strong> The expected path length from center to red terminal equals the expected path length from center to green terminal</li>
+                        <li><strong>Transition Probabilities:</strong> At each node, the random walk chooses among connected nodes with equal probability</li>
+                    </ol>
+                    
+                    <p>For a symmetric random walk on a symmetric graph starting at the center:</p>
+                    $$P(\text{reach red terminal}) = P(\text{reach green terminal}) = 0.5$$
+                    
+                    <div class="conclusion">
+                        <strong>Result:</strong> Exactly 50% chance of success, 50% chance of failure ✓
+                    </div>
+                </div>
+            </section>
+
+            <!-- Summary -->
+            <section class="math-section summary">
+                <h2 class="process-title">Summary</h2>
+                <div class="math-content">
+                    <p>All four stochastic processes have been mathematically proven to provide exactly 50% probability for success and 50% probability for failure:</p>
+                    
+                    <div class="summary-grid">
+                        <div class="summary-item">
+                            <h4>Brownian Motion</h4>
+                            <p>Symmetric random walk theorem</p>
+                            <span class="probability">P(success) = 0.5</span>
+                        </div>
+                        <div class="summary-item">
+                            <h4>2D Random Walk</h4>
+                            <p>Geometric symmetry argument</p>
+                            <span class="probability">P(success) = 0.5</span>
+                        </div>
+                        <div class="summary-item">
+                            <h4>Poisson Process</h4>
+                            <p>Inverse CDF calculation</p>
+                            <span class="probability">P(success) = 0.5</span>
+                        </div>
+                        <div class="summary-item">
+                            <h4>Graph Walk</h4>
+                            <p>Graph symmetry principle</p>
+                            <span class="probability">P(success) = 0.5</span>
+                        </div>
+                    </div>
+                    
+                    <div class="conclusion final">
+                        <strong>Conclusion:</strong> The Fortune Oracle provides mathematically fair and balanced predictions across all four stochastic processes.
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <button onclick="window.close()" class="close-button">Return to Fortune Oracle</button>
+            <p>Mathematics ensures fairness • 数学保证公平</p>
+        </footer>
+    </div>
+</body>
+</html>

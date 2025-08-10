@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧧 Chinese Fortune Teller - Brownian Motion Oracle</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">
+                <span class="chinese-char">运</span>
+                Fortune Oracle
+                <span class="chinese-char">命</span>
+            </h1>
+            <p class="subtitle">Let the ancient wisdom of Brownian motion reveal your destiny</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Visualization Area -->
+            <div class="visualization-container">
+                <!-- Process Selection -->
+                <div class="process-selection">
+                    <h3 class="selection-title">Choose Your Oracle Method</h3>
+                    <div class="process-buttons">
+                        <button class="process-btn active" data-process="brownian">
+                            <span class="process-name">Brownian Motion</span>
+                            <span class="process-desc">Classic 1D random walk</span>
+                        </button>
+                        <button class="process-btn" data-process="2d-walk">
+                            <span class="process-name">2D Random Walk</span>
+                            <span class="process-desc">Navigate the plane of fate</span>
+                        </button>
+                        <button class="process-btn" data-process="poisson">
+                            <span class="process-name">Poisson Process</span>
+                            <span class="process-desc">Race against time</span>
+                        </button>
+                        <button class="process-btn" data-process="graph-walk">
+                            <span class="process-name">Graph Walk</span>
+                            <span class="process-desc">Journey through connected paths</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="fortune-board">
+                    <div class="boundary lucky-boundary">
+                        <span class="boundary-label">吉 Good Fortune</span>
+                        <div class="boundary-value">10</div>
+                    </div>
+                    
+                    <div class="motion-area">
+                        <canvas id="brownian-canvas"></canvas>
+                        <div class="starting-line">
+                            <span class="start-label">起点 Starting Point: 5</span>
+                        </div>
+                    </div>
+                    
+                    <div class="boundary unlucky-boundary">
+                        <span class="boundary-label">凶 Challenging Times</span>
+                        <div class="boundary-value">0</div>
+                    </div>
+                </div>
+                
+                <!-- Status Display -->
+                <div class="status-display">
+                    <div class="current-position">
+                        <span class="position-label">Current Position:</span>
+                        <span id="position-value">5.0</span>
+                    </div>
+                    <div class="step-counter">
+                        <span class="step-label">Steps Taken:</span>
+                        <span id="step-count">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fortune Display -->
+            <div class="fortune-container" id="fortune-container">
+                <div class="fortune-scroll">
+                    <h2 class="fortune-title" id="fortune-title">Your Destiny Awaits</h2>
+                    <div class="fortune-text" id="fortune-text">
+                        Click "Seek Your Fortune" to begin your journey through the realm of chance and fate.
+                    </div>
+                    <div class="fortune-explanation" id="fortune-explanation">
+                        The ancient art of divination through mathematical principles will guide you.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls">
+                <button id="start-button" class="fortune-button primary">
+                    <span class="button-text">🎋 Seek Your Fortune</span>
+                </button>
+                <button id="reset-button" class="fortune-button secondary" style="display: none;">
+                    <span class="button-text">🔄 Try Again</span>
+                </button>
+                <button id="math-button" class="fortune-button tertiary">
+                    <span class="button-text">▣ See the Math</span>
+                </button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Built with ancient wisdom and modern mathematics • 古老智慧与现代数学的结合</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
