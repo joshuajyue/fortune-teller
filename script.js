@@ -159,25 +159,27 @@ class FortuneOracle {
         this.graphNodes = [];
         this.graphEdges = [];
         
-        const canvasWidth = 600;
-        const canvasHeight = 300;
-        const cycleRadius = 70;
+        // Use actual canvas dimensions for proper centering
+        const canvasWidth = this.canvasWidth || 600;
+        const canvasHeight = this.canvasHeight || 300;
+        const cycleRadius = Math.max(60, Math.min(canvasWidth, canvasHeight) * 0.2); // Larger minimum radius
         const k = 20; // cycle size
         
         let nodeId = 0;
+        const margin = canvasWidth * 0.08; // Dynamic margin based on canvas width
         
         // Left terminal node (bad fortune - red)
         this.graphNodes.push({
             id: nodeId++,
             name: 'Misfortune',
-            x: 40,
+            x: margin,
             y: canvasHeight / 2,
             type: 'bad'
         });
         
         // Left cycle nodes
         const leftCycleStart = nodeId;
-        const leftCycleCenter = { x: 40 + cycleRadius + 30, y: canvasHeight / 2 };
+        const leftCycleCenter = { x: margin + cycleRadius + 30, y: canvasHeight / 2 };
         for (let i = 0; i < k; i++) {
             const angle = (i / k) * 2 * Math.PI;
             const x = leftCycleCenter.x + cycleRadius * Math.cos(angle);
@@ -224,7 +226,7 @@ class FortuneOracle {
         
         // Right cycle nodes
         const rightCycleStart = nodeId;
-        const rightCycleCenter = { x: canvasWidth - 40 - cycleRadius - 30, y: canvasHeight / 2 };
+        const rightCycleCenter = { x: canvasWidth - margin - cycleRadius - 30, y: canvasHeight / 2 };
         for (let i = 0; i < k; i++) {
             const angle = (i / k) * 2 * Math.PI;
             const x = rightCycleCenter.x + cycleRadius * Math.cos(angle);
@@ -243,7 +245,7 @@ class FortuneOracle {
         this.graphNodes.push({
             id: nodeId++,
             name: 'Great Fortune',
-            x: canvasWidth - 40,
+            x: canvasWidth - margin,
             y: canvasHeight / 2,
             type: 'good'
         });
